@@ -10,6 +10,9 @@ describe('Functional Testing for the target website', () => {
 
   // add more test cases
   it('should be on the landing page', () => {
-    // do something ...
+    // check if user is redirected to signin page
+    let EC = page.getExpectedConditions(),
+        titleIsNotEmpty = EC.not(EC.titleIs(''));
+    expect(page.getBrowser().wait(titleIsNotEmpty, 2000));
   });
 });

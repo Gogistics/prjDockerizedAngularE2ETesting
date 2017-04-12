@@ -12,7 +12,7 @@ ADD ./scripts/dumb-init_1.2.0_amd64 /usr/bin/dumb-init
 # add files into /app/
 ADD .angular-cli.json protractor.conf.js package.json ./scripts/environment_variables /app/
 
-# Commands
+# commands
 RUN set -a && . /app/environment_variables && \
     apt-get update && \
     set -xe && \

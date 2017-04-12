@@ -1,4 +1,4 @@
-import { browser, element, by } from 'protractor';
+import { browser, element, by, ExpectedConditions } from 'protractor';
 class BaseOfE2ETesing {
   // inner variables
   private testingUrl: string;
@@ -20,13 +20,13 @@ class BaseOfE2ETesing {
     browser.get(this.testingUrl);
   }
 
-  public getTitle() {
-    return browser.getTitle();
+  public getExpectedConditions() {
+    return ExpectedConditions;
   }
 }
 
 export class E2ETesting extends BaseOfE2ETesing {
-  //
+  // init
   constructor(givenUrl: string) {
     super(givenUrl);
   }
