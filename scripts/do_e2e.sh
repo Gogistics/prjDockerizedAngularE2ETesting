@@ -50,7 +50,7 @@ check_if_user_pass_valid_url () {
   # check if users pass -u and the corresponding value which is a url
   if [[ $# -eq "$NO_ARGS" ]]  # Script invoked with no command-line args?
   then
-    echo "Usage: `basename $0` options (-u)"
+    echo "Usage: `basename $0` options (-u)" >&2
     exit $E_OPTERROR          # Exit and explain usage.
                               # Usage: scriptname -options
                               # Note: dash (-) necessary
@@ -77,20 +77,20 @@ check_if_user_pass_valid_url () {
         # check if the url start with http because angular-cli/protractor doesn't recognize it
         local url_prefix="http"
         if [[ $u_arg != $url_prefix* ]]; then
-          echo "Please specify the url prefix (http or https)"
+          echo "Please specify the url prefix (http or https)" >&2
           exit $E_OPTERROR
         fi
 
-        curl -sk --head  --request GET $u_arg | grep -E "302 FOUND|200 OK" > /dev/null
+        curl -sk --head  --request GET $u_arg | grep -E "302 Found|200 OK" > /dev/null
         if [[ $? -eq 0 ]]; then
           TARGET_URL=$u_arg
         else
-          echo ERROR: "The given url is invalid or the web server is down!"
+          echo ERROR: "The given url is invalid or the web server is down!" >&2
           exit $E_OPTERROR
         fi
       ;;
       *)
-        echo ERROR: "Invalid value for option -u"
+        echo ERROR: "Invalid value for option -u" >&2
         exit $E_OPTERROR
     esac
   done
